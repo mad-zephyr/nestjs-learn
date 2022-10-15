@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Step / Publish to registry
 
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: minddocdev/docker-publish-action@master
         with:
           registry: docker.pkg.github.com
           name: docker.pkg.github.com/mad-zephyr/nestjs-learn/nestjs-learn

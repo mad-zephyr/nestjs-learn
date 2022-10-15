@@ -7,6 +7,12 @@
       "use": "@now/node"
     }
   ],
+  "rewrites": [
+    { 
+      "source": "/api/(.*)", 
+      "destination": "dist/main.js" 
+    }
+  ],
   "routes": [
     {
       "src": "/(.*)",

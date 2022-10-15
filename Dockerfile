@@ -1,9 +1,39 @@
-FROM node:14-alpine
-WORKDIR /opt/app
-ADD package.json package.json
-RUN npm install
-ADD . .
+# FROM node:14-alpine
+# WORKDIR /opt/app
+# ADD package.json package.json
+# RUN npm install
+# ADD . .
 
-RUN npm run build
-RUN npm prune --production
-CMD ["node", "./dist/main.js"]
+# RUN npm run build
+# RUN npm prune --production
+# CMD ["node", "./dist/main.js"]
+
+# ---------------------------
+
+
+FROM node:16.8-alpine3.11 as builder
+
+ENV NODE_ENV build
+
+WORKDIR /home/node
+
+COPY . /home/node
+
+RUN npm ci \
+    && npm run build \
+    && npm prune --production
+
+# ---
+
+FROM node:16.8-alpine3.11
+
+ENV NODE_ENV production
+
+USER node
+WORKDIR /home/node
+
+COPY --from=builder /home/node/package*.json /home/node/
+COPY --from=builder /home/node/node_modules/ /home/node/node_modules/
+COPY --from=builder /home/node/dist/ /home/node/dist/
+
+CMD ["node", "dist/main.js"]

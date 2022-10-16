@@ -1,4 +1,10 @@
 version: '3'
+networks:
+  netBackEnd:
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.0.0/24
 services:
   top-api:
     container_name: TOP_API

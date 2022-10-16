@@ -6,6 +6,18 @@ const getMongoConfig = async (configService) => {
 };
 exports.getMongoConfig = getMongoConfig;
 const getMongoString = (configService) => {
+    if (process.env.NODE_ENV === 'production') {
+        return ('mongodb://' +
+            configService.get('MONGO_LOGIN_PRODUCTION') +
+            ':' +
+            configService.get('MONGO_PASSWORD_PRODUCTION') +
+            '@' +
+            configService.get('MONGO_HOST_PRODUCTION') +
+            ':' +
+            configService.get('MONGO_PORT') +
+            '/' +
+            configService.get('MONGO_AUTH_DB'));
+    }
     return ('mongodb://' +
         configService.get('MONGO_LOGIN') +
         ':' +
@@ -19,7 +31,6 @@ const getMongoString = (configService) => {
 };
 const getMongoOptions = () => ({
     useNewUrlParser: true,
-    useCreateIndex: true,
     useUnifiedTopology: true,
 });
 //# sourceMappingURL=mongo.config.js.map

@@ -4,6 +4,7 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const PORT = process.env.PORT || 3000;
 async function bootstrap() {
+    console.log(process.env.NODE_ENV);
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.setGlobalPrefix('api');
     await app.listen(PORT);

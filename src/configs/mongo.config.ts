@@ -17,7 +17,7 @@ const getMongoString = (configService: ConfigService) => {
     ':' +
     configService.get('MONGO_PASSWORD') +
     '@' +
-    configService.get('MONGO_HOST_PRODUCTION') +
+    configService.get('MONGO_HOST') +
     ':' +
     configService.get('MONGO_PORT') +
     '/' +

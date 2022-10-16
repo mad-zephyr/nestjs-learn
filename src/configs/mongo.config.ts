@@ -18,7 +18,10 @@ const getMongoString = (configService: ConfigService) => {
     configService.get('MONGO_PASSWORD') +
     '@' +
     configService.get('MONGO_HOST') +
-    '/?retryWrites=true&w=majority'
+    ':' +
+    configService.get('MONGO_PORT') +
+    '/' +
+    configService.get('MONGO_AUTH_DB')
   );
 };
 

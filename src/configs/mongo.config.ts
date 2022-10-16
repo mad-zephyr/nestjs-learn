@@ -11,14 +11,15 @@ export const getMongoConfig = async (
 };
 
 const getMongoString = (configService: ConfigService) => {
-  if (process.env.NODE_ENV === 'production') {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('development-------');
     return (
       'mongodb://' +
-      configService.get('MONGO_LOGIN_PRODUCTION') +
+      configService.get('MONGO_LOGIN_DEV') +
       ':' +
-      configService.get('MONGO_PASSWORD_PRODUCTION') +
+      configService.get('MONGO_PASSWORD_DEV') +
       '@' +
-      configService.get('MONGO_HOST_PRODUCTION') +
+      configService.get('MONGO_HOST_DEV') +
       ':' +
       configService.get('MONGO_PORT') +
       '/' +
@@ -28,11 +29,11 @@ const getMongoString = (configService: ConfigService) => {
 
   return (
     'mongodb://' +
-    configService.get('MONGO_LOGIN') +
+    configService.get('MONGO_LOGIN_PRODUCTION') +
     ':' +
-    configService.get('MONGO_PASSWORD') +
+    configService.get('MONGO_PASSWORD_PRODUCTION') +
     '@' +
-    configService.get('MONGO_HOST') +
+    configService.get('MONGO_HOST_PRODUCTION') +
     ':' +
     configService.get('MONGO_PORT') +
     '/' +

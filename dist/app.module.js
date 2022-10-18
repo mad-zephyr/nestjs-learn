@@ -17,6 +17,7 @@ const product_module_1 = require("./product/product.module");
 const review_module_1 = require("./review/review.module");
 const config_1 = require("@nestjs/config");
 const mongo_config_1 = require("./configs/mongo.config");
+const files_module_1 = require("./files/files.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -32,6 +33,7 @@ AppModule = __decorate([
             top_page_module_1.TopPageModule,
             product_module_1.ProductModule,
             review_module_1.ReviewModule,
+            files_module_1.FilesModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],

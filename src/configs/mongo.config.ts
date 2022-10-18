@@ -12,7 +12,6 @@ export const getMongoConfig = async (
 
 const getMongoString = (configService: ConfigService) => {
   if (process.env.NODE_ENV === 'development') {
-    console.log('development-------');
     return (
       'mongodb://' +
       configService.get('MONGO_LOGIN_DEV') +
